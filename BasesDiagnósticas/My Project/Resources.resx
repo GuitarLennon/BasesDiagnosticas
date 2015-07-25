@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="String1" xml:space="preserve">
+    <value>Antecedentes de la enfermedad actual: Paciente de 25 años (G1 P0) que cursa con embarazo de 34 semanas diagnosticada por ecografía del primer trimestre y fecha probable de parto cierta, consulta por cefalea frontal de 4 horas de evolución y vómitos, en 2 episodios, de tipo alimentario.
+Antecedentes Familiares: madre hipertensa.
+Examen físico: TA: 170/90 mmHg. FC: 82 por min. FR:19 por min. Tº: 36,6º C
+Paciente lúcida y colaboradora, ubicada en tiempo y espacio, con edema facial, facie abotagada, buena suficiencia cardiorrespiratoria, con edema en miembros inferiores y superiores, resto del examen físico sin particularidades.
+Examen obstétrico: Altura uterina: 29 cm., Dinámica uterina: -/10, Latidos cardiofetales: 145 por minuto, Movimientos fetales activos:+, Tono normal, Maniobras de Leopold: feto único, situación longitudinal, dorso derecho, presentación cefálica. Tacto vaginal: P2 R2 E2 L2 Dilatación 0 cm. Sin hidrorrea ni ginecorragia.
+Exámenes complementarios: Laboratorio: Glóbulos rojos: 3.700.000/mm3. Hematocrito: 30%. Glóbulos blancos: 7.500/mm3. Plaquetas: 160.000/mm3. Creatinina: 0.7 mg/dl. Uricemia:6.8 mg/dl. Glucemia: 87mg/dl. Proteinuria: 5 g/lt.
+Ecodoppler fetal: normal.
+Diagnóstico: Primigesta, preeclampsia severa con signos de eclampsismo. Alto riesgo.
+Tratamiento: Se decide internación y se indica Alfametildopa 2 gr/día. y sulfato de magnesio dosis de ataque y de mantenimiento, como la TA continua elevada se decide asociar Nifedipina 20 mg/día V.O.. Al 3er día de internación se realiza maduración pulmonar fetal con Betametasona 12,5mg/ 12 hs. IM. (2 dosis). Al 6to día de internación y debido a que la paciente se encuentra refractaria al tratamiento se decide culminar la gestación por vía abdominal obteniéndose un R.N. vivo de sexo masculino de 2.250gr. de 36 semanas por examen físico. En el alumbramiento se constata un desprendimiento del 15% de la torta placentaria. La paciente pasa a sala con 140/80 mmHg. de TA.
+Al 5to día de postoperatorio la paciente es dada de alta ya que evolucionó favorablemente y se encuentra sin medicación antihipertensiva manejando cifras tensionales de 120/90 mmHg</value>
+  </data>
+</root>
