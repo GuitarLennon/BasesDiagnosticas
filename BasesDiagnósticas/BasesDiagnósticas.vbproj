@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D66C434B-1421-43D0-A957-994C99B7756C}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>ConsoleApplication1.Main</StartupObject>
-    <RootNamespace>ConsoleApplication1</RootNamespace>
+    <StartupObject>Diagnósticos.Main</StartupObject>
+    <RootNamespace>Diagnósticos</RootNamespace>
     <AssemblyName>BasesDiagnósticas</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Console</MyType>
@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasesDiagnósticas.vb" />
+    <Compile Include="Programación.vb" />
     <Compile Include="Ginecología.vb" />
     <Compile Include="Main.vb" />
     <Compile Include="MedicinaGeneral.vb" />

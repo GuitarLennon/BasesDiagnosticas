@@ -1,4 +1,6 @@
-﻿Module MedicinaGeneral
+﻿Imports Diagnósticos.BasesDiagnósticas
+
+Namespace MedicinaGeneral
 
     Public Enum Simetría
         NoEspecificado
@@ -54,4 +56,4 @@
 
         Public Overrides Property Desencadentante As String
     End Class
-End Module
+End Namespace

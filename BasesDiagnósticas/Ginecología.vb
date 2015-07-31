@@ -1,4 +1,6 @@
-﻿Module Ginecología
+﻿Imports Diagnósticos.BasesDiagnósticas
+
+Module Ginecología
 
     Public Class Embarazo
         Inherits Diagnóstico
@@ -12,7 +14,7 @@
         Public Overrides Property ManifestaciónObligatoria As Manifestación()
 
         Public Overrides Property ManifestaciónOpcionales As Manifestación()
- 
+
         Public Overrides Property DiagnósticosComplementarios As Diagnóstico()
 
         Public Overrides Property DiagnósticosNecesarios As Diagnóstico()

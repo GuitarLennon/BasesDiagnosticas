@@ -1,55 +1,32 @@
 ﻿Option Strict On
 Option Explicit On
 
-Module BasesDiagnósticas
+Imports Diagnósticos.Programación
 
-    MustInherit Class Término
-        Public Overridable ReadOnly Property Nombre As String
-            Get
-                Return MyClass.GetType.Name.Replace("_", " ")
-            End Get
-        End Property
+Namespace BasesDiagnósticas
 
-        Public Overridable Property Sinónimos As String
-
-        Public MustOverride Property Description As String
-
-        Public Overridable Function EsEvocado(texto As String) As Boolean
-            If Strings.InStr(texto, Me.Nombre, CompareMethod.Text) > 0 Then
-                Return True
-            Else
-                If Sinónimos Is Nothing Then Return False
-                For Each sinonimo As String In Sinónimos
-                    If Strings.InStr(texto, sinonimo, CompareMethod.Text) > 0 Then Return True
-                Next
-            End If
-            Return False
-        End Function
-
-    End Class
-
-    MustInherit Class Manifestación
+    Public MustInherit Class Manifestación
         Inherits Término
         Public MustOverride Property Desencadentante As String
         Public MustOverride Property Atenuante As String
 
     End Class
 
-    MustInherit Class Signo
+    Public MustInherit Class Signo
         Inherits Manifestación
 
 
     End Class
 
-    MustInherit Class Síntoma
+    Public MustInherit Class Síntoma
         Inherits Manifestación
 
     End Class
 
-    MustInherit Class Diagnóstico
+    Public MustInherit Class Diagnóstico
         Inherits Término
 
-        Friend Shared ReadOnly Property Diagnósticos As Type()
+        Friend Shared ReadOnly Property DiagnósticosDerivados As Type()
             Get
                 Return AppDomain.CurrentDomain.GetAssemblies().SelectMany(Function(a As System.Reflection.Assembly) a.GetTypes()).Where(Function(t As Type) t.IsSubclassOf(GetType(Diagnóstico))).ToArray
             End Get
@@ -61,7 +38,7 @@ Module BasesDiagnósticas
         Public MustOverride Property ManifestaciónOpcionales As Manifestación()
         Public MustOverride Property ManifestaciónComplementarios As Manifestación()
 
-        Public Overridable Function Evaluar(texto As String) As Evaluación
+        Public Overridable Function EvaluarDiagnóstico(texto As String) As Evaluación
             Dim n As New Evaluación(Me.Nombre)
             If Not DiagnósticosNecesarios Is Nothing Then
                 DiagnósticosNecesarios.ToList.ForEach(Sub(m As Diagnóstico)
@@ -107,17 +84,7 @@ Module BasesDiagnósticas
             Return n
         End Function
 
-
     End Class
-
-    Public Function Evaluar(texto As String) As Evaluación()
-        Dim l As New List(Of Evaluación)
-        Diagnóstico.Diagnósticos.ToList.ForEach(Sub(d As Type)
-                                                    Dim dx As Diagnóstico = CType(Activator.CreateInstance(d), Diagnóstico)
-                                                    If dx.EsEvocado(texto) Then l.Add(dx.Evaluar(texto))
-                                                End Sub)
-        Return l.ToArray
-    End Function
 
     Public Class Evaluación
         Private DiagnósticoEvaluado As String
@@ -135,6 +102,15 @@ Module BasesDiagnósticas
             If Errores.Count = 0 And Advertencias.Count = 0 And Mensajes.Count = 0 Then Return "Diagnóstico de '" & Me.DiagnósticoEvaluado & " ' realizado correctamente"
             Return t.ToString
         End Function
+
+        Public Shared Function Evaluar(texto As String) As Evaluación()
+            Dim l As New List(Of Evaluación)
+            Diagnóstico.DiagnósticosDerivados.ToList.ForEach(Sub(d As Type)
+                                                                 Dim dx As Diagnóstico = CType(Activator.CreateInstance(d), Diagnóstico)
+                                                                 If dx.EsEvocado(texto) Then l.Add(dx.EvaluarDiagnóstico(texto))
+                                                             End Sub)
+            Return l.ToArray
+        End Function
     End Class
 
-End Module
+End Namespace
