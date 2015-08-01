@@ -29,14 +29,18 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>BasesDiagnósticas.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,7 +50,11 @@
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>BasesDiagnósticas.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -55,7 +63,7 @@
     <OptionCompare>Binary</OptionCompare>
   </PropertyGroup>
   <PropertyGroup>
-    <OptionStrict>Off</OptionStrict>
+    <OptionStrict>On</OptionStrict>
   </PropertyGroup>
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
@@ -82,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasesDiagnósticas.vb" />
+    <Compile Include="Evaluación.vb" />
     <Compile Include="Programación.vb" />
     <Compile Include="Ginecología.vb" />
     <Compile Include="Main.vb" />

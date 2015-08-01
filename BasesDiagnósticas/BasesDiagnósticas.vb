@@ -1,9 +1,9 @@
-﻿Option Strict On
-Option Explicit On
+﻿Option Strict On    'Dice que tu programación debe ser estricta (sin errores)
+Option Explicit On  'Dice que tu programación debe ser explícita
 
-Imports Diagnósticos.Programación
+Imports Diagnósticos.Programación 'Importa los recursos de Diagnósticos.Programación
 
-Namespace BasesDiagnósticas
+Namespace BasesDiagnósticas 'Le da el nombre a la 'carpeta' donde guardaremos los siguientes objetos
 
     Public MustInherit Class Manifestación
         Inherits Término
@@ -42,7 +42,7 @@ Namespace BasesDiagnósticas
             Dim n As New Evaluación(Me.Nombre)
             If Not DiagnósticosNecesarios Is Nothing Then
                 DiagnósticosNecesarios.ToList.ForEach(Sub(m As Diagnóstico)
-                                                          If Not m.EsEvocado(texto) Then
+                                                          If Not m.ObtenerUbicación(texto) Then
                                                               n.Errores.Add("Para poder diagnósticar" & Me.Nombre & " es necesario el diagnóstico de : '" & m.Nombre & "'")
                                                           End If
                                                       End Sub)
@@ -50,7 +50,7 @@ Namespace BasesDiagnósticas
 
             If Not DiagnósticosComplementarios Is Nothing Then
                 DiagnósticosComplementarios.ToList.ForEach(Sub(m As Diagnóstico)
-                                                               If Not m.EsEvocado(texto) Then
+                                                               If Not m.ObtenerUbicación(texto) Then
                                                                    n.Errores.Add("Para poder diagnósticar" & Me.Nombre & " es necesario el diagnóstico de : '" & m.Nombre & "'")
                                                                End If
                                                            End Sub)
@@ -58,7 +58,7 @@ Namespace BasesDiagnósticas
 
             If Not ManifestaciónObligatoria Is Nothing Then
                 ManifestaciónObligatoria.ToList.ForEach(Sub(m As Manifestación)
-                                                            If Not m.EsEvocado(texto) Then
+                                                            If Not m.ObtenerUbicación(texto) Then
                                                                 n.Errores.Add("No se mencionan datos acerca de: '" & m.Nombre & "', necesarios para sostener el diagnóstico")
                                                             End If
                                                         End Sub)
@@ -66,7 +66,7 @@ Namespace BasesDiagnósticas
 
             If Not ManifestaciónOpcionales Is Nothing Then
                 ManifestaciónOpcionales.ToList.ForEach(Sub(m As Manifestación)
-                                                           If Not m.EsEvocado(texto) Then
+                                                           If Not m.ObtenerUbicación(texto) Then
                                                                n.Advertencias.Add("Deberían mencionarse datos acerca de: '" & m.Nombre & "' para apoyar el diagnóstico")
                                                            End If
                                                        End Sub)
@@ -75,7 +75,7 @@ Namespace BasesDiagnósticas
 
             If Not ManifestaciónComplementarios Is Nothing Then
                 ManifestaciónComplementarios.ToList.ForEach(Sub(m As Manifestación)
-                                                                If Not m.EsEvocado(texto) Then
+                                                                If Not m.ObtenerUbicación(texto) Then
                                                                     n.Mensajes.Add("Puede complementarse agregando datos de: '" & m.Nombre & "' ")
                                                                 End If
                                                             End Sub)
@@ -84,33 +84,6 @@ Namespace BasesDiagnósticas
             Return n
         End Function
 
-    End Class
-
-    Public Class Evaluación
-        Private DiagnósticoEvaluado As String
-        Sub New(diagnóstico As String)
-            Me.DiagnósticoEvaluado = diagnóstico
-        End Sub
-        Public Property Errores As New List(Of String)
-        Public Property Advertencias As New List(Of String)
-        Public Property Mensajes As New List(Of String)
-        Public Overrides Function ToString() As String
-            Dim t As New Text.StringBuilder
-            Errores.ForEach(Sub(e As String) t.AppendLine(String.Format("Error : {0}", e)))
-            Advertencias.ForEach(Sub(e As String) t.AppendLine(String.Format("Advertencia : {0}", e)))
-            Mensajes.ForEach(Sub(e As String) t.AppendLine(String.Format("Mensaje : {0}", e)))
-            If Errores.Count = 0 And Advertencias.Count = 0 And Mensajes.Count = 0 Then Return "Diagnóstico de '" & Me.DiagnósticoEvaluado & " ' realizado correctamente"
-            Return t.ToString
-        End Function
-
-        Public Shared Function Evaluar(texto As String) As Evaluación()
-            Dim l As New List(Of Evaluación)
-            Diagnóstico.DiagnósticosDerivados.ToList.ForEach(Sub(d As Type)
-                                                                 Dim dx As Diagnóstico = CType(Activator.CreateInstance(d), Diagnóstico)
-                                                                 If dx.EsEvocado(texto) Then l.Add(dx.EvaluarDiagnóstico(texto))
-                                                             End Sub)
-            Return l.ToArray
-        End Function
     End Class
 
 End Namespace
