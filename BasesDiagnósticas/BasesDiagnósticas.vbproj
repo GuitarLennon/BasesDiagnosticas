@@ -69,6 +69,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Métodos_Juárez">
+      <HintPath>C:\Users\Arthur\Documents\Visual Studio 2013\Projects\Diagnósticos\Métodos_Juárez\bin\Debug\Métodos_Juárez.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -89,12 +92,15 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasesDiagnósticas.vb" />
+    <Compile Include="BasesDiagnósticas\Manifestación.vb" />
+    <Compile Include="BasesDiagnósticas\Diagnóstico.vb" />
+    <Compile Include="BasesDiagnósticas\Término.vb" />
     <Compile Include="Evaluación.vb" />
-    <Compile Include="Programación.vb" />
-    <Compile Include="Ginecología.vb" />
-    <Compile Include="Main.vb" />
-    <Compile Include="MedicinaGeneral.vb" />
+    <Compile Include="Medicina\MedicinaInterna.vb" />
+    <Compile Include="Programación\Programación.vb" />
+    <Compile Include="Medicina\Ginecología.vb" />
+    <Compile Include="Programación\Main.vb" />
+    <Compile Include="Medicina\MedicinaGeneral.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

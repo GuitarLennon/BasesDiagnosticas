@@ -14,10 +14,6 @@ Namespace MedicinaGeneral
         Public Overrides Property Description As String
 
         Public Property DiferenciaDePeso As Single
-
-        Public Overrides Property Atenuante As String
-
-        Public Overrides Property Desencadentante As String
     End Class
 
     Public Class Edema
@@ -51,9 +47,6 @@ Namespace MedicinaGeneral
         Public Property Aparición As String
 
         Public Property Movil As String
-
-        Public Overrides Property Atenuante As String
-
-        Public Overrides Property Desencadentante As String
     End Class
+
 End Namespace
