@@ -8,18 +8,19 @@ Namespace Ginecología
 
         Public Overrides Property Description As String
 
-        Public Overrides Property Sinónimos As String = "Gestación"
+        Public Overrides Property Sinónimos As String() = {"Gestación"}
 
     End Class
 
     Public Class Hipertensión_Gestacional
         Inherits Diagnóstico
 
-
+        Public Overrides Property Description As String
     End Class
 
     Public Class Preeclampsia
         Inherits Hipertensión_Gestacional
+
 
     End Class
 

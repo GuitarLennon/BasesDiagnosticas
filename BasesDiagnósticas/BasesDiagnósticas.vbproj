@@ -75,6 +75,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -88,6 +89,7 @@
     <Import Include="System.Data" />
     <Import Include="System.Diagnostics" />
     <Import Include="System.Linq" />
+    <Import Include="System.Web" />
     <Import Include="System.Xml.Linq" />
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
@@ -95,9 +97,12 @@
     <Compile Include="BasesDiagnósticas\Manifestación.vb" />
     <Compile Include="BasesDiagnósticas\Diagnóstico.vb" />
     <Compile Include="BasesDiagnósticas\Término.vb" />
-    <Compile Include="Evaluación.vb" />
+    <Compile Include="BasesDiagnósticas\Evaluación.vb" />
     <Compile Include="Medicina\MedicinaInterna.vb" />
-    <Compile Include="Programación\Programación.vb" />
+    <Compile Include="Programación\Atributos.vb" />
+    <Compile Include="Programación\myHtml.vb" />
+    <Compile Include="Programación\MyXml.vb" />
+    <Compile Include="Programación\TextClass.vb" />
     <Compile Include="Medicina\Ginecología.vb" />
     <Compile Include="Programación\Main.vb" />
     <Compile Include="Medicina\MedicinaGeneral.vb" />
@@ -135,7 +140,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
+    <None Include="Programación\App.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

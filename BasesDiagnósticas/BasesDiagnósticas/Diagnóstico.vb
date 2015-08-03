@@ -76,13 +76,12 @@ Namespace BasesDiagnósticas
 #End Region
 
 #Region "Functions"
-        Friend Shared ReadOnly Property DiagnósticosDerivados As Type()
-            Get
-                Return AppDomain.CurrentDomain.GetAssemblies(). _
-                    SelectMany(Function(a As System.Reflection.Assembly) a.GetTypes()). _
-                    Where(Function(t As Type) t.IsSubclassOf(GetType(Diagnóstico))).ToArray
-            End Get
-        End Property
+        Friend Shared Function DiagnósticosDerivados() As Type()
+            Return AppDomain.CurrentDomain.GetAssemblies(). _
+                SelectMany(Function(a As System.Reflection.Assembly) a.GetTypes()). _
+                Where(Function(t As Type) t.IsSubclassOf(GetType(Diagnóstico))).ToArray
+
+        End Function
 
         Public Overridable Function Evaluar(texto As Texto) As Evaluación.EvaluaciónDeDiagnóstico 'Implements iEvaluable.Evaluar
             Dim n As New Evaluación.EvaluaciónDeDiagnóstico(Me.Nombre)
@@ -160,8 +159,6 @@ Namespace BasesDiagnósticas
 
         End Sub
 #End Region
-
-        Public Overrides Property Description As String
 
     End Class
 End Namespace

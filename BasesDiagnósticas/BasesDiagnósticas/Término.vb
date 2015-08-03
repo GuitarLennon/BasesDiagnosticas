@@ -3,14 +3,125 @@ Option Infer Off
 Option Strict On
 Option Compare Text
 
-Imports Diagnósticos.BasesDiagnósticas
+Imports Diagnósticos.Programación
 
-Namespace Programación
+Namespace BasesDiagnósticas
     ''' <summary>
     ''' Define a un término médico o no médico cualquiera que se puede buscar
     ''' </summary>
     ''' <remarks></remarks>
     Public MustInherit Class Término
+
+#Region "Shared"
+        Protected Shared _Diccionario As Dictionary(Of String, Type)
+        Protected Shared _keys As List(Of String)
+
+        Protected Friend Shared Function Diccionario() As IDictionary(Of String, Type)
+
+            Return _Diccionario
+
+        End Function
+
+        Protected Friend Shared Function Lista() As IList(Of String)
+
+            Return _keys
+
+        End Function
+
+        Shared Sub New()
+
+            _Diccionario = _TérminosDerivados(True, True)
+            _keys = New List(Of String)
+
+            _Diccionario.ToList.ForEach(
+                Sub(kvp As KeyValuePair(Of String, Type))
+                    _keys.Add(kvp.Key)
+                End Sub)
+
+        End Sub
+
+        Protected Friend Shared Function TérminosDerivadosType() As Type()
+
+            Return AppDomain.CurrentDomain.GetAssemblies(). _
+                SelectMany(Function(a As System.Reflection.Assembly) a.GetTypes()). _
+                Where(Function(t As Type) t.IsSubclassOf(GetType(Término))).ToArray
+
+        End Function
+
+        Private Shared Function _TérminosDerivados(IncluirSinónimos As Boolean, incluirAbstractos As Boolean) As Dictionary(Of String, Type)
+
+            'Crear un diccionario
+            Dim dic As New Dictionary(Of String, Type)
+
+            'Por cada término derivado
+            TérminosDerivadosType.ToList.ForEach(
+                Sub(t As Type)
+
+                    'Si se puede crear la clase
+                    If Not t.IsAbstract Then
+
+                        'Crea la clase
+                        Dim a As Término = CType(Activator.CreateInstance(t), Término)
+
+                        'Agregalo al diccionario
+                        dic.Add(a.Nombre, t)
+
+                        'Si nos piden incluir los sinónimos entonces
+                        If IncluirSinónimos Then
+
+                            'Pregunta los sinónimos y si existen
+                            If a.Sinónimos IsNot Nothing Then
+
+                                'por cada uno
+                                a.Sinónimos.ToList.ForEach(
+                                    Sub(active As String)
+
+                                        'agrega una entrada al diccionario
+                                        dic.Add(active, t)
+
+                                    End Sub)
+                            End If
+
+                            'destruye el objeto
+                            a.Finalize()
+
+                        Else 'Si no se puede crear el objeto (es abstracto)
+
+                            'si nos piden incluir abstractos
+                            If incluirAbstractos Then
+
+                                'Agregalo al diccionario con el nombre de su clase
+                                dic.Add(t.Name, t)
+                            End If
+
+                        End If
+                    End If
+                End Sub)
+
+            'regresa el diccionario
+            Return dic
+
+        End Function
+
+        Public Shared Function TérminosDerivados(Optional IncluirSinónimos As Boolean = False, Optional IncluirAbstractos As Boolean = False) As IDictionary(Of String, Type)
+
+            Return _TérminosDerivados(IncluirSinónimos, IncluirAbstractos)
+
+        End Function
+
+        Public Shared Function TérminosDerivadosActivos() As Término()
+
+            Dim l As New List(Of Término)
+
+            TérminosDerivadosType.ToArray.ToList.ForEach(
+                Sub(t As Type)
+                    l.Add(CType(Activator.CreateInstance(t), Término))
+                End Sub)
+
+            Return l.ToArray
+
+        End Function
+#End Region
 
 #Region "Property"
 
@@ -22,7 +133,9 @@ Namespace Programación
         ''' <remarks></remarks>
         Public Overridable ReadOnly Property Nombre As String
             Get
+
                 Return MyClass.GetType.Name.Replace("_", " ")
+
             End Get
         End Property
 
@@ -32,7 +145,7 @@ Namespace Programación
         ''' <value></value>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Overridable Property Sinónimos As String
+        Public Overridable Property Sinónimos As String()
 
         ''' <summary>
         ''' La descripción del término descrito por esta clase
@@ -44,6 +157,7 @@ Namespace Programación
 #End Region
 
 #Region "Functions"
+
         ''' <summary>
         ''' Obtiene la ubicación del término en el texto
         ''' </summary>
@@ -51,6 +165,7 @@ Namespace Programación
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Overridable Function ObtenerUbicaciones(texto As Texto) As UbicaciónEnTexto()
+
             Dim result As UbicaciónEnTexto() 'New List(Of UbicationOnText)
             result = texto.GetUbicationOnText(Nombre)
             If result IsNot Nothing AndAlso result.Count > 0 Then Return result
@@ -61,6 +176,7 @@ Namespace Programación
             Next
 
             Return Nothing
+
         End Function
 
         ''' <summary>
@@ -70,8 +186,11 @@ Namespace Programación
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Overridable Function Existe(texto As Texto) As Boolean
+
             Return texto.Exists(Nombre)
+
         End Function
+
 #End Region
 
     End Class
