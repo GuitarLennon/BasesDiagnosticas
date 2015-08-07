@@ -37,16 +37,25 @@ Namespace Evaluación
 #End Region
 
 #Region "Shared functions"
-        Public Shared Function Evaluar(texto As String) As EvaluaciónDeDiagnóstico()
-            Return Evaluar(New Texto(texto))
+        Public Shared Function Evaluar(texto As String) As Evaluación()
+            Return Evaluar(New TextoMédico(texto))
         End Function
 
-        Public Shared Function Evaluar(texto As Texto) As EvaluaciónDeDiagnóstico()
-            Dim l As New List(Of EvaluaciónDeDiagnóstico)
-            Diagnóstico.DiagnósticosDerivados.ToList.ForEach(Sub(d As Type)
-                                                                 Dim dx As Diagnóstico = CType(Activator.CreateInstance(d), Diagnóstico)
-                                                                 If dx.Existe(texto) Then l.Add(dx.Evaluar(texto))
-                                                             End Sub)
+        Public Shared Function Evaluar(texto As TextoMédico) As Evaluación()
+            Dim l As New List(Of Evaluación)
+
+            texto.TérminosMédicos.ToList.ForEach(
+                Sub(t As Término)
+                    Dim d As Diagnóstico = TryCast(t, Diagnóstico)
+                    If Not d Is Nothing Then l.Add(d.Evaluar(texto))
+                    Dim m As Manifestación = TryCast(t, Manifestación)
+                    If Not m Is Nothing Then
+                        t.ObtenerUbicaciones(texto).ToList.ForEach(Sub(UbicaciónEnTexto As UbicaciónEnTexto)
+                                                                       l.Add(m.EsCorrecto(UbicaciónEnTexto))
+                                                                   End Sub)
+                    End If
+                End Sub)
+
             Return l.ToArray
         End Function
 #End Region

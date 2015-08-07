@@ -2,13 +2,12 @@
 Option Explicit On  'Dice que tu programación debe ser explícita
 
 Imports Diagnósticos.Programación 'Importa los recursos de Diagnósticos.Programación
-Imports Diagnósticos.Evaluación
-Imports Métodos_Juárez.Métodos_Juárez.Propiedades
+'Imports Diagnósticos.Evaluación
+'Imports Métodos_Juárez.Métodos_Juárez.Propiedades
 
 Namespace BasesDiagnósticas
     Public MustInherit Class Diagnóstico
         Inherits Término
-        'Implements iEvaluable
 
 #Region "instance"
         Private _DiagnósticosNecesarios As Diagnóstico()
@@ -77,8 +76,8 @@ Namespace BasesDiagnósticas
 
 #Region "Functions"
         Friend Shared Function DiagnósticosDerivados() As Type()
-            Return AppDomain.CurrentDomain.GetAssemblies(). _
-                SelectMany(Function(a As System.Reflection.Assembly) a.GetTypes()). _
+            Return AppDomain.CurrentDomain.GetAssemblies().
+                SelectMany(Function(a As System.Reflection.Assembly) a.GetTypes()).
                 Where(Function(t As Type) t.IsSubclassOf(GetType(Diagnóstico))).ToArray
 
         End Function
@@ -87,37 +86,37 @@ Namespace BasesDiagnósticas
             Dim n As New Evaluación.EvaluaciónDeDiagnóstico(Me.Nombre)
 
             If Not DiagnósticosNecesarios Is Nothing Then
-                DiagnósticosNecesarios.ToList.ForEach( _
+                DiagnósticosNecesarios.ToList.ForEach(
                     Sub(m As Diagnóstico)
                         If Not m.Existe(texto) Then
-                            n.Errores.Add("Para poder diagnósticar" & Me.Nombre & _
+                            n.Errores.Add("Para poder diagnósticar" & Me.Nombre &
                                           " es necesario el diagnóstico de : '" & m.Nombre & "'")
                         End If
                     End Sub)
             End If
 
             If Not DiagnósticosComplementarios Is Nothing Then
-                DiagnósticosComplementarios.ToList.ForEach( _
+                DiagnósticosComplementarios.ToList.ForEach(
                     Sub(m As Diagnóstico)
                         If Not m.Existe(texto) Then
-                            n.Errores.Add("Para poder diagnósticar" & Me.Nombre & _
+                            n.Errores.Add("Para poder diagnósticar" & Me.Nombre &
                                           " es necesario el diagnóstico de : '" & m.Nombre & "'")
                         End If
                     End Sub)
             End If
 
             If Not ManifestacionesObligatorias Is Nothing Then
-                ManifestacionesObligatorias.ToList.ForEach( _
+                ManifestacionesObligatorias.ToList.ForEach(
                     Sub(m As Manifestación)
                         If Not m.Existe(texto) Then
-                            n.Errores.Add("No se mencionan datos acerca de: '" & m.Nombre & _
+                            n.Errores.Add("No se mencionan datos acerca de: '" & m.Nombre &
                                           "', necesarios para sostener el diagnóstico")
                         End If
                     End Sub)
             End If
 
             If Not ManifestacionesOpcionales Is Nothing Then
-                ManifestacionesOpcionales.ToList.ForEach( _
+                ManifestacionesOpcionales.ToList.ForEach(
                     Sub(m As Manifestación)
                         If Not m.Existe(texto) Then
                             n.Advertencias.Add("Deberían mencionarse datos acerca de: '" & m.Nombre _
@@ -128,7 +127,7 @@ Namespace BasesDiagnósticas
 
 
             If Not ManifestacionesComplementarias Is Nothing Then
-                ManifestacionesComplementarias.ToList.ForEach( _
+                ManifestacionesComplementarias.ToList.ForEach(
                     Sub(m As Manifestación)
                         If Not m.Existe(texto) Then
                             n.Mensajes.Add("Puede complementarse agregando datos de: '" & m.Nombre & "' ")
@@ -141,19 +140,19 @@ Namespace BasesDiagnósticas
 #End Region
 
 #Region "Constructor"
-        Sub New(DiagnósticosNecesarios As Diagnóstico(),
-                DiagnósticosComplementarios As Diagnóstico(),
-                ManifestaciónObligatoria As Manifestación(),
-                ManifestaciónComplementaria As Manifestación(),
-                ManifestaciónOpcional As Manifestación())
+        'Sub New(DiagnósticosNecesarios As Diagnóstico(),
+        '        DiagnósticosComplementarios As Diagnóstico(),
+        '        ManifestaciónObligatoria As Manifestación(),
+        '        ManifestaciónComplementaria As Manifestación(),
+        '        ManifestaciónOpcional As Manifestación())
 
-            Me.DiagnósticosNecesarios = DiagnósticosNecesarios
-            Me.DiagnósticosComplementarios = DiagnósticosComplementarios
-            Me.ManifestacionesObligatorias = ManifestaciónObligatoria
-            Me.ManifestacionesOpcionales = ManifestaciónOpcional
-            Me.ManifestacionesComplementarias = ManifestaciónComplementaria
+        '    Me.DiagnósticosNecesarios = DiagnósticosNecesarios
+        '    Me.DiagnósticosComplementarios = DiagnósticosComplementarios
+        '    Me.ManifestacionesObligatorias = ManifestaciónObligatoria
+        '    Me.ManifestacionesOpcionales = ManifestaciónOpcional
+        '    Me.ManifestacionesComplementarias = ManifestaciónComplementaria
 
-        End Sub
+        'End Sub
 
         Sub New()
 

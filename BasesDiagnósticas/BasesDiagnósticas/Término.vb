@@ -35,15 +35,19 @@ Namespace BasesDiagnósticas
 
             _Diccionario.ToList.ForEach(
                 Sub(kvp As KeyValuePair(Of String, Type))
+
                     _keys.Add(kvp.Key)
+
                 End Sub)
+
+            _keys.Sort(Function(x As String, y As String) y.Length.CompareTo(x.Length))
 
         End Sub
 
         Protected Friend Shared Function TérminosDerivadosType() As Type()
 
-            Return AppDomain.CurrentDomain.GetAssemblies(). _
-                SelectMany(Function(a As System.Reflection.Assembly) a.GetTypes()). _
+            Return AppDomain.CurrentDomain.GetAssemblies().
+                SelectMany(Function(a As System.Reflection.Assembly) a.GetTypes()).
                 Where(Function(t As Type) t.IsSubclassOf(GetType(Término))).ToArray
 
         End Function
@@ -64,7 +68,7 @@ Namespace BasesDiagnósticas
                         Dim a As Término = CType(Activator.CreateInstance(t), Término)
 
                         'Agregalo al diccionario
-                        dic.Add(a.Nombre, t)
+                        dic.Add(a.Nombre.ToLower, t)
 
                         'Si nos piden incluir los sinónimos entonces
                         If IncluirSinónimos Then
@@ -77,7 +81,7 @@ Namespace BasesDiagnósticas
                                     Sub(active As String)
 
                                         'agrega una entrada al diccionario
-                                        dic.Add(active, t)
+                                        dic.Add(active.ToLower, t)
 
                                     End Sub)
                             End If
@@ -91,7 +95,7 @@ Namespace BasesDiagnósticas
                             If incluirAbstractos Then
 
                                 'Agregalo al diccionario con el nombre de su clase
-                                dic.Add(t.Name, t)
+                                dic.Add(t.Name.ToLower, t)
                             End If
 
                         End If
@@ -121,6 +125,10 @@ Namespace BasesDiagnósticas
             Return l.ToArray
 
         End Function
+#End Region
+
+#Region "Instance"
+        Public ubicaciónEnTexto As UbicaciónEnTexto()
 #End Region
 
 #Region "Property"
@@ -154,6 +162,17 @@ Namespace BasesDiagnósticas
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public MustOverride Property Description As String
+#End Region
+
+#Region "Constructors"
+
+        Friend Sub New()
+
+        End Sub
+
+        'Public MustOverride Sub New(ubicación As UbicaciónEnTexto)
+        'Me.ubicaciónEnTexto = ubicación
+        'End Sub
 #End Region
 
 #Region "Functions"

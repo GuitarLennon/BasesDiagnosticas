@@ -1,8 +1,7 @@
 ﻿Option Strict On    'Dice que tu programación debe ser estricta (sin errores)
 Option Explicit On  'Dice que tu programación debe ser explícita
 
-Imports Diagnósticos.Programación 'Importa los recursos de Diagnósticos.Programación
-Imports Diagnósticos.Evaluación
+Imports Diagnósticos.Programación
 Imports Métodos_Juárez.Métodos_Juárez.Propiedades
 
 Namespace BasesDiagnósticas 'Le da el nombre a la 'carpeta' donde guardaremos los siguientes objetos
@@ -22,7 +21,7 @@ Namespace BasesDiagnósticas 'Le da el nombre a la 'carpeta' donde guardaremos l
                                                t.Exists(x.Nombre)
                                            End Sub)
             'todo: fix this
-            Return Nothing
+            Return e
         End Function
 
 
