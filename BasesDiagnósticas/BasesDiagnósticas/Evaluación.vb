@@ -30,7 +30,7 @@ Namespace Evaluación
             Errores.ForEach(Sub(e As String) t.AppendLine(String.Format("Error : {0}", e)))
             Advertencias.ForEach(Sub(e As String) t.AppendLine(String.Format("Advertencia : {0}", e)))
             Mensajes.ForEach(Sub(e As String) t.AppendLine(String.Format("Mensaje : {0}", e)))
-            If Errores.Count = 0 And Advertencias.Count = 0 And Mensajes.Count = 0 Then Return "Diagnóstico de '" & Me.ElementoEvaluado & " ' realizado correctamente"
+            If Errores.Count = 0 And Advertencias.Count = 0 And Mensajes.Count = 0 Then Return "Diagnóstico de '" & Me.ElementoEvaluado & "' realizado correctamente"
             Return t.ToString
         End Function
 

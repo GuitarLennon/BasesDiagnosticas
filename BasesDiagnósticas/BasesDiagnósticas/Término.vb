@@ -13,34 +13,34 @@ Namespace BasesDiagnósticas
     Public MustInherit Class Término
 
 #Region "Shared"
-        Protected Shared _Diccionario As Dictionary(Of String, Type)
-        Protected Shared _keys As List(Of String)
+        Protected Shared myDiccionario As Dictionary(Of String, Type)
+        Protected Shared myKeys As List(Of String)
 
         Protected Friend Shared Function Diccionario() As IDictionary(Of String, Type)
 
-            Return _Diccionario
+            Return myDiccionario
 
         End Function
 
         Protected Friend Shared Function Lista() As IList(Of String)
 
-            Return _keys
+            Return myKeys
 
         End Function
 
         Shared Sub New()
 
-            _Diccionario = _TérminosDerivados(True, True)
-            _keys = New List(Of String)
+            myDiccionario = _TérminosDerivados(True, True)
+            myKeys = New List(Of String)
 
-            _Diccionario.ToList.ForEach(
+            myDiccionario.ToList.ForEach(
                 Sub(kvp As KeyValuePair(Of String, Type))
 
-                    _keys.Add(kvp.Key)
+                    myKeys.Add(kvp.Key)
 
                 End Sub)
 
-            _keys.Sort(Function(x As String, y As String) y.Length.CompareTo(x.Length))
+            myKeys.Sort(Function(x As String, y As String) y.Length.CompareTo(x.Length))
 
         End Sub
 

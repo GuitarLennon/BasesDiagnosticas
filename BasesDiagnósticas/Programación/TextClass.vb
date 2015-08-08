@@ -19,7 +19,7 @@ Namespace Programación
         ''' líneas del texto presente
         ''' </summary>
         ''' <remarks></remarks>
-        Protected _líneas As New List(Of String)
+        Protected myLineas As New List(Of String)
 
         ''''' <summary>
         '''' Cadena de texto buffer
@@ -36,13 +36,13 @@ Namespace Programación
         Public Property Texto As String
             Get
 
-                Return String.Join("", _líneas)
+                Return String.Join("", myLineas)
 
             End Get
             Set(value As String)
 
                 If value Is Nothing Then Stop
-                _líneas = value.Split(CaracteresSeparadores).ToList
+                myLineas = value.Split(CaracteresSeparadores).ToList
                 '_texto = value
 
             End Set
@@ -51,14 +51,14 @@ Namespace Programación
         Public Property Líneas As String()
             Get
 
-                Return _líneas.ToArray
+                Return myLineas.ToArray
 
             End Get
             Protected Set(value As String())
 
                 'Me._texto = String.Join("", value)
                 '_líneas.Clear()
-                _líneas = value.ToList
+                myLineas = value.ToList
 
             End Set
         End Property
@@ -69,7 +69,7 @@ Namespace Programación
 
         Sub New(Texto As String)
 
-            Me.texto = Texto
+            Me.Texto = Texto
 
         End Sub
 
@@ -83,7 +83,7 @@ Namespace Programación
 
         Public Function Exists(word As String) As Boolean
 
-            Return texto.Contains(word)
+            Return Texto.Contains(word)
 
         End Function
 
@@ -91,16 +91,16 @@ Namespace Programación
 
             Dim result As New List(Of UbicaciónEnTexto)
 
-            Me._líneas.ForEach(Sub(s As String)
-                                   If s.ToLower.Contains(word.ToLower) Then
-                                       result.Add(
+            Me.myLineas.ForEach(Sub(s As String)
+                                    If s.ToLower.Contains(word.ToLower) Then
+                                        result.Add(
                                            New UbicaciónEnTexto With {
                                                .Oración = s,
-                                               .NúmeroOración = Me._líneas.IndexOf(s),
+                                               .NúmeroOración = Me.myLineas.IndexOf(s),
                                                .CaracterInicioOración = Strings.InStr(s, word, CompareMethod.Text),
                                                .Longitud = word.Length})
-                                   End If
-                               End Sub)
+                                    End If
+                                End Sub)
 
             Return result.ToArray
 
@@ -110,12 +110,12 @@ Namespace Programación
 
             Dim result As UbicaciónEnTexto = Nothing 'New List(Of UbicaciónEnTexto)
 
-            Dim s As String = _líneas(línea)
+            Dim s As String = myLineas(línea)
 
             If s.Contains(word) Then
                 result = New UbicaciónEnTexto With {
                         .Oración = s,
-                        .NúmeroOración = Me._líneas.IndexOf(s),
+                        .NúmeroOración = Me.myLineas.IndexOf(s),
                         .CaracterInicioOración = Strings.InStr(s, word, CompareMethod.Text),
                         .Longitud = word.Length}
             End If

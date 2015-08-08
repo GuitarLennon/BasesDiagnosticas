@@ -4,19 +4,18 @@ Option Strict On
 Option Compare Text
 
 Imports Diagnósticos.Programación
-Imports System.Xml
 
 Namespace BasesDiagnósticas
 
     Public Class TextoMédico
         Inherits Texto
 
-        Protected _TérminosMédicos As New List(Of Término)
+        Protected myTérminosMédicos As New List(Of Término)
 
         Public ReadOnly Property TérminosMédicos As Término()
             Get
 
-                Return _TérminosMédicos.ToArray()
+                Return myTérminosMédicos.ToArray()
 
             End Get
         End Property
@@ -32,13 +31,13 @@ Namespace BasesDiagnósticas
 
             Dim list As New List(Of String)
 
-            For i As Integer = 0 To _líneas.Count - 1
+            For i As Integer = 0 To myLineas.Count - 1
 
                 'Sub(línea As String)
-                If Not String.IsNullOrEmpty(_líneas(i)) Then
+                If Not String.IsNullOrEmpty(myLineas(i)) Then
 
                     'Excluir términos ya identificados
-                    _líneas(i) = deleteTerminos(_líneas(i))
+                    myLineas(i) = deleteTerminos(myLineas(i))
 
                     For Each s As String In Término.Lista
 
@@ -47,25 +46,25 @@ Namespace BasesDiagnósticas
                         'revisar si ya existe dicho término
                         If list.Contains(s) Then
 
-                            _líneas(i) = etiquetarTérminos(_líneas(i), s)
+                            myLineas(i) = etiquetarTérminos(myLineas(i), s)
 
                         Else
 
                             'Buscar términos
-                            If _líneas(i).ToLower.Contains(s.ToLower) Then
+                            If myLineas(i).ToLower.Contains(s.ToLower) Then
 
                                 'Agrégalo a la lista
                                 list.Add(s.ToLower)
 
                                 'etiquetar término
-                                _líneas(i) = etiquetarTérminos(_líneas(i), s)
+                                myLineas(i) = etiquetarTérminos(myLineas(i), s)
 
                                 'agregar término
                                 Dim t As Término = CType(Activator.CreateInstance(Término.Diccionario.Item(s)), Término)
 
                                 t.ubicaciónEnTexto = GetUbicationOnText(s)
 
-                                _TérminosMédicos.Add(t)
+                                myTérminosMédicos.Add(t)
 
                             End If
 

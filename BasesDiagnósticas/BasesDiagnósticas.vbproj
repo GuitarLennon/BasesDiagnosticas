@@ -69,9 +69,6 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Métodos_Juárez">
-      <HintPath>C:\Users\Arthur\Documents\Visual Studio 2013\Projects\Diagnósticos\Métodos_Juárez\bin\Debug\Métodos_Juárez.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -102,6 +99,8 @@
     <Compile Include="Programación\Atributos.vb" />
     <Compile Include="Programación\myHtml.vb" />
     <Compile Include="Programación\MyXml.vb" />
+    <Compile Include="Programación\Propiedades\Propiedades.vb" />
+    <Compile Include="Programación\Propiedades\Utilidades.vb" />
     <Compile Include="Programación\TextClass.vb" />
     <Compile Include="Medicina\Ginecología.vb" />
     <Compile Include="Programación\Main.vb" />

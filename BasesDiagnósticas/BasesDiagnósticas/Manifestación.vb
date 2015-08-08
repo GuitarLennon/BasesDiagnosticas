@@ -2,7 +2,7 @@
 Option Explicit On  'Dice que tu programación debe ser explícita
 
 Imports Diagnósticos.Programación
-Imports Métodos_Juárez.Métodos_Juárez.Propiedades
+Imports Diagnósticos.Programación.Propiedades
 
 Namespace BasesDiagnósticas 'Le da el nombre a la 'carpeta' donde guardaremos los siguientes objetos
 
@@ -16,10 +16,10 @@ Namespace BasesDiagnósticas 'Le da el nombre a la 'carpeta' donde guardaremos l
         Public Overridable Function EsCorrecto(UbicaciónEnTexto As UbicaciónEnTexto) As Evaluación.EvaluaciónDeManifestación
             Dim e As New Evaluación.EvaluaciónDeManifestación(Me.Nombre) With {.ubicaciónEnTexto = UbicaciónEnTexto}
 
-            Propiedades(Me).ToList.ForEach(Sub(x As Propiedad)
-                                               Dim t As New Texto(UbicaciónEnTexto.Oración)
-                                               t.Exists(x.Nombre)
-                                           End Sub)
+            Propiedades.Propiedades(Me).ToList.ForEach(Sub(x As Propiedad)
+                                                           Dim t As New Texto(UbicaciónEnTexto.Oración)
+                                                           t.Exists(x.Nombre)
+                                                       End Sub)
             'todo: fix this
             Return e
         End Function
