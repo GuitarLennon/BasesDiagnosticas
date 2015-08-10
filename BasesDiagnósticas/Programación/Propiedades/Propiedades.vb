@@ -1,5 +1,6 @@
 ﻿Imports System.Reflection
 Imports System.Runtime.CompilerServices
+Imports Diagnósticos.Programación.Utilidades
 
 <Assembly: CLSCompliant(True)>
 

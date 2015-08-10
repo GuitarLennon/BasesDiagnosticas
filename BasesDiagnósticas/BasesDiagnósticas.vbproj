@@ -91,20 +91,33 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasesDiagnósticas\Laboratorio.vb" />
     <Compile Include="BasesDiagnósticas\Manifestación.vb" />
     <Compile Include="BasesDiagnósticas\Diagnóstico.vb" />
+    <Compile Include="BasesDiagnósticas\Mensuración.vb" />
     <Compile Include="BasesDiagnósticas\Término.vb" />
     <Compile Include="BasesDiagnósticas\Evaluación.vb" />
-    <Compile Include="Medicina\MedicinaInterna.vb" />
+    <Compile Include="Medicina\Endocrinología\Diabetes.vb" />
+    <Compile Include="Medicina\Endocrinología\Tiroidismos.vb" />
+    <Compile Include="Medicina\Medicina General\MalAbsorción.vb" />
+    <Compile Include="Medicina\Medicina Interna\Feocromocitoma.vb" />
+    <Compile Include="Medicina\Medicina Interna\MedicinaInterna.vb" />
+    <Compile Include="Medicina\Mediciones\MedicionesComunes.vb" />
+    <Compile Include="Medicina\Psiquiatría\psiquiatría.vb" />
+    <Compile Include="Medicina\Signos y síntomas\CambiosDePeso.vb" />
+    <Compile Include="Medicina\Signos y síntomas\Dolor.vb" />
+    <Compile Include="Medicina\Signos y síntomas\Fiebre.vb" />
+    <Compile Include="Medicina\Signos y síntomas\SíntomasGenerales.vb" />
+    <Compile Include="Medicina\Medicina General\TrastornosDelPeso.vb" />
     <Compile Include="Programación\Atributos.vb" />
     <Compile Include="Programación\myHtml.vb" />
     <Compile Include="Programación\MyXml.vb" />
     <Compile Include="Programación\Propiedades\Propiedades.vb" />
     <Compile Include="Programación\Propiedades\Utilidades.vb" />
     <Compile Include="Programación\TextClass.vb" />
-    <Compile Include="Medicina\Ginecología.vb" />
+    <Compile Include="Medicina\Ginecología\Ginecología.vb" />
     <Compile Include="Programación\Main.vb" />
-    <Compile Include="Medicina\MedicinaGeneral.vb" />
+    <Compile Include="Medicina\Signos y síntomas\Edema.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -159,6 +172,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

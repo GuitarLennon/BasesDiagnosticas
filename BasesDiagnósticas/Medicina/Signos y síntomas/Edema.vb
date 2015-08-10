@@ -1,38 +1,20 @@
 ﻿Imports Diagnósticos.BasesDiagnósticas
+Imports Diagnósticos.Programación
+'Imports Diagnósticos.
 
-Namespace MedicinaGeneral
+Namespace Medicina.Signos
 
-    Public Enum Simetría
-        NoEspecificado
-        Simétrica
-        Asimétrica
-    End Enum
-
-    Public Class Aumento_De_Peso
-        Inherits Signo
-
-        Public Overrides Property Description As String
-
-        Public Property DiferenciaDePeso As Single
-    End Class
-
+    <Autor(Autor:=Autores.Arturo)>
     Public Class Edema
         Inherits Signo
-
-        Public Enum Magnitud
-            grado1
-            grado2
-            grado3
-            gardo4
-        End Enum
 
         Public Overrides Property Description As String
 
         Public Property Región As String
 
-        Public Property Grado As Magnitud
+        Public Property Grado As String
 
-        Public Property Simetría As Simetría
+        Public Property Simetría As String
 
         Public Property Color As String
 
@@ -47,6 +29,7 @@ Namespace MedicinaGeneral
         Public Property Aparición As String
 
         Public Property Movil As String
+
     End Class
 
 End Namespace

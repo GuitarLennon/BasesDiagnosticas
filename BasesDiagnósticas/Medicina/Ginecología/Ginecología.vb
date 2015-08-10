@@ -1,10 +1,12 @@
 ﻿Imports Diagnósticos.BasesDiagnósticas
 Imports Diagnósticos.MedicinaInterna
 
-Namespace Ginecología
+Namespace Medicina.Ginecología
 
     Public Class Embarazo
         Inherits Diagnóstico
+
+        Public Overrides Property Cie10 As String = "Z33"
 
         Public Overrides Property Description As String
 
@@ -15,7 +17,10 @@ Namespace Ginecología
     Public Class Hipertensión_Gestacional
         Inherits Diagnóstico
 
+        Public Overrides Property Cie10 As String = "O10"
+
         Public Overrides Property Description As String
+
     End Class
 
     Public Class Preeclampsia

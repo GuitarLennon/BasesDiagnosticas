@@ -2,10 +2,13 @@
 Option Explicit On  'Dice que tu programación debe ser explícita
 
 Imports Diagnósticos.Programación 'Importa los recursos de Diagnósticos.Programación
-'Imports Diagnósticos.Evaluación
-'Imports Métodos_Juárez.Métodos_Juárez.Propiedades
+
 
 Namespace BasesDiagnósticas
+
+    ''' <summary>
+    ''' Abstracto de los diagnósticos
+    ''' </summary>
     Public MustInherit Class Diagnóstico
         Inherits Término
 
@@ -18,6 +21,10 @@ Namespace BasesDiagnósticas
 #End Region
 
 #Region "property"
+        ''' <summary>
+        ''' Establece los diagnósticos mínimos necesarios para establecer este diagnóstico
+        ''' </summary>
+        ''' <returns></returns>
         Public Overridable Property DiagnósticosNecesarios As Diagnóstico()
             Get
                 Return _DiagnósticosNecesarios
@@ -29,6 +36,10 @@ Namespace BasesDiagnósticas
             End Set
         End Property
 
+        ''' <summary>
+        ''' Establece los diagnósticos que complementarán este diagnóstico
+        ''' </summary>
+        ''' <returns></returns>
         Public Overridable Property DiagnósticosComplementarios As Diagnóstico()
             Get
                 Return _DiagnósticosComplementarios
@@ -40,6 +51,10 @@ Namespace BasesDiagnósticas
             End Set
         End Property
 
+        ''' <summary>
+        ''' Establece las manifestaciones mínimas necesarios para establecer este diagnóstico
+        ''' </summary>
+        ''' <returns></returns>
         Public Overridable Property ManifestacionesObligatorias As Manifestación()
             Get
                 Return _ManifestacionesObligatoria
@@ -51,6 +66,11 @@ Namespace BasesDiagnósticas
             End Set
         End Property
 
+        ''' <summary>
+        ''' Establece las manifestaciones que deben mencionarse para establecer este diagnóstico;
+        ''' pero que no son completamente necesarias para el mismo
+        ''' </summary>
+        ''' <returns></returns>
         Public Overridable Property ManifestacionesOpcionales As Manifestación()
             Get
                 Return _ManifestacionesOpcional
@@ -62,6 +82,11 @@ Namespace BasesDiagnósticas
             End Set
         End Property
 
+        ''' <summary>
+        ''' Establece las manifestaciones que podrían complementar este diagnóstico, pero que son 
+        ''' prescindibles
+        ''' </summary>
+        ''' <returns></returns>
         Public Overridable Property ManifestacionesComplementarias As Manifestación()
             Get
                 Return _ManifestacionesComplementaria
@@ -72,9 +97,15 @@ Namespace BasesDiagnósticas
                 _ManifestacionesComplementaria = l.ToArray
             End Set
         End Property
+
+        Public MustOverride Property Cie10 As String
 #End Region
 
 #Region "Functions"
+        ''' <summary>
+        ''' Obtiene todos los diagnósticos que se derivan de la clase diagnóstico
+        ''' </summary>
+        ''' <returns></returns>
         Friend Shared Function DiagnósticosDerivados() As Type()
             Return AppDomain.CurrentDomain.GetAssemblies().
                 SelectMany(Function(a As System.Reflection.Assembly) a.GetTypes()).
@@ -82,57 +113,82 @@ Namespace BasesDiagnósticas
 
         End Function
 
-        Public Overridable Function Evaluar(texto As Texto) As Evaluación.EvaluaciónDeDiagnóstico 'Implements iEvaluable.Evaluar
+        ''' <summary>
+        ''' Evalua un diagnóstico
+        ''' </summary>
+        ''' <param name="texto"></param>
+        ''' <returns></returns>
+        Public Overridable Function Evaluar(texto As TextoMédico) As Evaluación.EvaluaciónDeDiagnóstico 'Implements iEvaluable.Evaluar
             Dim n As New Evaluación.EvaluaciónDeDiagnóstico(Me.Nombre)
 
             If Not DiagnósticosNecesarios Is Nothing Then
                 DiagnósticosNecesarios.ToList.ForEach(
                     Sub(m As Diagnóstico)
-                        If Not m.Existe(texto) Then
+                        If Not texto.TérminosMédicos.Contains(m) Then
                             n.Errores.Add("Para poder diagnósticar" & Me.Nombre &
-                                          " es necesario el diagnóstico de : '" & m.Nombre & "'")
+                                              " es necesario el diagnóstico de : '" & m.Nombre & "'")
                         End If
+
+                        'If Not m.Existe(texto) Then
+                        '    n.Errores.Add("Para poder diagnósticar" & Me.Nombre &
+                        '                  " es necesario el diagnóstico de : '" & m.Nombre & "'")
+                        'End If
                     End Sub)
             End If
 
             If Not DiagnósticosComplementarios Is Nothing Then
                 DiagnósticosComplementarios.ToList.ForEach(
                     Sub(m As Diagnóstico)
-                        If Not m.Existe(texto) Then
-                            n.Errores.Add("Para poder diagnósticar" & Me.Nombre &
-                                          " es necesario el diagnóstico de : '" & m.Nombre & "'")
+                        If Not texto.TérminosMédicos.Contains(m) Then
+                            n.Advertencias.Add("Para un buen diagnóstico de" & Me.Nombre &
+                                              " conviene mencionar diagnóstico de : '" & m.Nombre & "'")
                         End If
+                        'If Not m.Existe(texto) Then
+                        '    n.Errores.Add("Para poder diagnósticar" & Me.Nombre &
+                        '                  " es necesario el diagnóstico de : '" & m.Nombre & "'")
+                        'End If
                     End Sub)
             End If
 
             If Not ManifestacionesObligatorias Is Nothing Then
                 ManifestacionesObligatorias.ToList.ForEach(
                     Sub(m As Manifestación)
-                        If Not m.Existe(texto) Then
+                        If Not texto.TérminosMédicos.Contains(m) Then
                             n.Errores.Add("No se mencionan datos acerca de: '" & m.Nombre &
                                           "', necesarios para sostener el diagnóstico")
                         End If
-                    End Sub)
+                        'If Not m.Existe(texto) Then
+                        '    n.Errores.Add("No se mencionan datos acerca de: '" & m.Nombre &
+                        '                  "', necesarios para sostener el diagnóstico")
+                        'End If
+                End Sub)
             End If
 
             If Not ManifestacionesOpcionales Is Nothing Then
                 ManifestacionesOpcionales.ToList.ForEach(
                     Sub(m As Manifestación)
-                        If Not m.Existe(texto) Then
-                            n.Advertencias.Add("Deberían mencionarse datos acerca de: '" & m.Nombre _
-                                               & "' para apoyar el diagnóstico")
+                        If Not texto.TérminosMédicos.Contains(m) Then
+                            n.Errores.Add("No se mencionan datos acerca de: '" & m.Nombre &
+                                          "', necesarios para sostener el diagnóstico")
                         End If
-                    End Sub)
+                        'If Not m.Existe(texto) Then
+                        '    n.Advertencias.Add("Deberían mencionarse datos acerca de: '" & m.Nombre _
+                        '                       & "' para apoyar el diagnóstico")
+                        'End If
+                End Sub)
             End If
 
 
             If Not ManifestacionesComplementarias Is Nothing Then
                 ManifestacionesComplementarias.ToList.ForEach(
                     Sub(m As Manifestación)
-                        If Not m.Existe(texto) Then
+                        If Not texto.TérminosMédicos.Contains(m) Then
                             n.Mensajes.Add("Puede complementarse agregando datos de: '" & m.Nombre & "' ")
                         End If
-                    End Sub)
+                        'If Not m.Existe(texto) Then
+                        ' n.Mensajes.Add("Puede complementarse agregando datos de: '" & m.Nombre & "' ")
+                        ' End If
+                End Sub)
             End If
 
             Return n
