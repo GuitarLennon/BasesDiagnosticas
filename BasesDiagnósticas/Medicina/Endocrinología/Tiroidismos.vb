@@ -2,8 +2,10 @@
 Option Explicit On
 
 Imports Diagnósticos.BasesDiagnósticas
+Imports Diagnósticos.Medicina.Síntomas
 
 Namespace Medicina.Endocrinología
+
     Public Class Hipotiroidismo
         Inherits Diagnóstico
 
@@ -19,6 +21,12 @@ Namespace Medicina.Endocrinología
         Public Overrides Property Cie10 As String
 
         Public Overrides Property Description As String
+
+        Sub New()
+            MyBase.ManifestacionesObligatorias = {
+                New Adelgazamiento
+            }
+        End Sub
 
     End Class
 End Namespace

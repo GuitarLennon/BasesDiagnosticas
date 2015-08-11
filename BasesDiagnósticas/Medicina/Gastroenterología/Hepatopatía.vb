@@ -1,24 +1,9 @@
 ﻿Imports Diagnósticos.BasesDiagnósticas
 Imports Diagnósticos.Medicina.Síntomas
 
-Namespace Medicina.Psiquiatría
+Namespace Medicina.Gastroenterología
 
-    Public Class Depresión
-        Inherits Diagnóstico
-
-        Public Overrides Property Cie10 As String
-
-        Public Overrides Property Description As String
-
-        Sub New()
-            MyBase.ManifestacionesOpcionales = {
-                New Adelgazamiento
-            }
-        End Sub
-
-    End Class
-
-    Public Class Anorexia_Nerviosa
+    Public Class Hepatopatía
         Inherits Diagnóstico
 
         Public Overrides Property Cie10 As String
@@ -32,5 +17,4 @@ Namespace Medicina.Psiquiatría
         End Sub
 
     End Class
-
 End Namespace

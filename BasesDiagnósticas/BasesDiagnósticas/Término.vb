@@ -16,13 +16,13 @@ Namespace BasesDiagnósticas
         Protected Shared myDiccionario As Dictionary(Of String, Type)
         Protected Shared myKeys As List(Of String)
 
-        Protected Friend Shared Function Diccionario() As IDictionary(Of String, Type)
+        Friend Shared Function Diccionario() As IDictionary(Of String, Type)
 
             Return myDiccionario
 
         End Function
 
-        Protected Friend Shared Function Lista() As IList(Of String)
+        Friend Shared Function Lista() As IList(Of String)
 
             Return myKeys
 
@@ -57,17 +57,24 @@ Namespace BasesDiagnósticas
             'Crear un diccionario
             Dim dic As New Dictionary(Of String, Type)
 
-            'Por cada término derivado
-            TérminosDerivadosType.ToList.ForEach(
-                Sub(t As Type)
+            Dim terms() As Type = TérminosDerivadosType()
 
+            'Por cada término derivado
+            For Each t As Type In terms
+
+                'TérminosDerivadosType.ToList.ForEach(
+                'Sub(t As Type)
+                Try
                     'Si se puede crear la clase
                     If Not t.IsAbstract Then
 
                         'Crea la clase
-                        Dim a As Término = CType(Activator.CreateInstance(t), Término)
+                        Dim a As Término
+
+                        a = CType(Activator.CreateInstance(t), Término)
 
                         'Agregalo al diccionario
+                        Debug.Print(a.Nombre.ToLower)
                         dic.Add(a.Nombre.ToLower, t)
 
                         'Si nos piden incluir los sinónimos entonces
@@ -81,6 +88,7 @@ Namespace BasesDiagnósticas
                                     Sub(active As String)
 
                                         'agrega una entrada al diccionario
+                                        Debug.Print(active.ToLower)
                                         dic.Add(active.ToLower, t)
 
                                     End Sub)
@@ -95,12 +103,17 @@ Namespace BasesDiagnósticas
                             If incluirAbstractos Then
 
                                 'Agregalo al diccionario con el nombre de su clase
+                                Debug.Print(t.Name.ToLower)
                                 dic.Add(t.Name.ToLower, t)
                             End If
 
                         End If
                     End If
-                End Sub)
+                Catch ex As Exception
+                    Stop
+                End Try
+                'End Sub)
+            Next
 
             'regresa el diccionario
             Return dic

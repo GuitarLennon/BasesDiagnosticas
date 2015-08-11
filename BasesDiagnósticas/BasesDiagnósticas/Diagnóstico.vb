@@ -30,7 +30,8 @@ Namespace BasesDiagnósticas
                 Return _DiagnósticosNecesarios
             End Get
             Protected Set(value As Diagnóstico())
-                Dim l As List(Of Diagnóstico) = _DiagnósticosNecesarios.ToList
+                Dim l As List(Of Diagnóstico)
+                If _DiagnósticosNecesarios Is Nothing Then l = New List(Of Diagnóstico) Else l = _DiagnósticosNecesarios.ToList
                 l.AddRange(value)
                 _DiagnósticosNecesarios = l.ToArray
             End Set
@@ -45,7 +46,8 @@ Namespace BasesDiagnósticas
                 Return _DiagnósticosComplementarios
             End Get
             Protected Set(value As Diagnóstico())
-                Dim l As List(Of Diagnóstico) = _DiagnósticosComplementarios.ToList
+                Dim l As List(Of Diagnóstico)
+                If _DiagnósticosComplementarios Is Nothing Then l = New List(Of Diagnóstico) Else l = _DiagnósticosComplementarios.ToList
                 l.AddRange(value)
                 _DiagnósticosComplementarios = l.ToArray
             End Set
@@ -60,7 +62,8 @@ Namespace BasesDiagnósticas
                 Return _ManifestacionesObligatoria
             End Get
             Protected Set(value As Manifestación())
-                Dim l As List(Of Manifestación) = _ManifestacionesObligatoria.ToList
+                Dim l As List(Of Manifestación)
+                If _ManifestacionesObligatoria Is Nothing Then l = New List(Of Manifestación) Else l = _ManifestacionesObligatoria.ToList
                 l.AddRange(value)
                 _ManifestacionesObligatoria = l.ToArray
             End Set
@@ -76,7 +79,8 @@ Namespace BasesDiagnósticas
                 Return _ManifestacionesOpcional
             End Get
             Protected Set(value As Manifestación())
-                Dim l As List(Of Manifestación) = _ManifestacionesOpcional.ToList
+                Dim l As List(Of Manifestación)
+                If _ManifestacionesOpcional Is Nothing Then l = New List(Of Manifestación) Else l = _ManifestacionesOpcional.ToList
                 l.AddRange(value)
                 _ManifestacionesOpcional = l.ToArray
             End Set
@@ -92,7 +96,8 @@ Namespace BasesDiagnósticas
                 Return _ManifestacionesComplementaria
             End Get
             Protected Set(value As Manifestación())
-                Dim l As List(Of Manifestación) = _ManifestacionesComplementaria.ToList
+                Dim l As List(Of Manifestación)
+                If _ManifestacionesComplementaria Is Nothing Then l = New List(Of Manifestación) Else l = _ManifestacionesComplementaria.ToList
                 l.AddRange(value)
                 _ManifestacionesComplementaria = l.ToArray
             End Set

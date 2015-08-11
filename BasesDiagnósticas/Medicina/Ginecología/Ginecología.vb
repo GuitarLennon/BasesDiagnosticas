@@ -1,5 +1,5 @@
 ﻿Imports Diagnósticos.BasesDiagnósticas
-Imports Diagnósticos.MedicinaInterna
+Imports Diagnósticos.Medicina.MedicinaInterna
 
 Namespace Medicina.Ginecología
 
