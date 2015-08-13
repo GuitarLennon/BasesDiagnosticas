@@ -9,44 +9,28 @@ Namespace Programación
     ''' Almacena la referencia de una clase, propiedad, enumeración... etc.
     ''' </summary>
     ''' <remarks></remarks>
-    <AttributeUsage(AttributeTargets.All, AllowMultiple:=True, Inherited:=False)>
+    <AttributeUsage(AttributeTargets.All, allowmultiple:=True, inherited:=False)>
     Public Class Referencia
         Inherits Attribute
 
-        Public Property Referencia As Referencias
-
-        Public ReadOnly Property ReferenciaEnTexto As String
-            Get
-                Return Nothing
-            End Get
-        End Property
-
+        Public Property Referencia As String
     End Class
-
-    <Flags>
-    Public Enum Referencias As Integer
-        Ninguna = 0
-        Jinich = 1
-    End Enum
-
-
-
-    <Flags>
-    Public Enum Autores As Byte
-        Arturo = 1
-        Roxana = 2
-    End Enum
 
     ''' <summary>
     ''' Almacena el nomre del autor o los autores de determinada clase
     ''' </summary>
     ''' <remarks></remarks>
-    <AttributeUsage(AttributeTargets.Class, AllowMultiple:=True, Inherited:=False)>
+    <AttributeUsage(AttributeTargets.Class, allowmultiple:=True, inherited:=False)>
     Public Class Autor
         Inherits Attribute
 
-        Public Property Autor As Autores
+        <Flags>
+        Public Enum Autores As Byte
+            Arturo = 1
+            Roxana = 2
+        End Enum
 
+        Public Property Autor As Autores
     End Class
 
 End Namespace

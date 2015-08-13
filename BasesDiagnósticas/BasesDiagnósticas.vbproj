@@ -115,12 +115,13 @@
     <Compile Include="Medicina\Neumología\Neumología.vb" />
     <Compile Include="Medicina\Oncología\Oncología.vb" />
     <Compile Include="Medicina\Psiquiatría\Psiquiatría.vb" />
+    <Compile Include="Medicina\Signos y síntomas\Apetito.vb" />
     <Compile Include="Medicina\Signos y síntomas\CambiosDePeso.vb" />
     <Compile Include="Medicina\Signos y síntomas\Dolor.vb" />
     <Compile Include="Medicina\Signos y síntomas\Endocrinológicos.vb" />
     <Compile Include="Medicina\Signos y síntomas\Fiebre.vb" />
-    <Compile Include="Medicina\Signos y síntomas\SíntomasGenerales.vb" />
     <Compile Include="Medicina\Medicina General\TrastornosDelPeso.vb" />
+    <Compile Include="Medicina\Signos y síntomas\Síntomas.vb" />
     <Compile Include="Medicina\Signos y síntomas\Urinarios.vb" />
     <Compile Include="Programación\Atributos.vb" />
     <Compile Include="Programación\myHtml.vb" />

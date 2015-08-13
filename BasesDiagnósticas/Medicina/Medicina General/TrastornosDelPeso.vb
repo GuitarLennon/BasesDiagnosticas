@@ -17,7 +17,7 @@ Namespace Medicina.MedicinaGeneral
 
         Sub New()
             MyBase.ManifestacionesObligatorias = {
-                New Orexia
+                New Apetito
             }
         End Sub
 
