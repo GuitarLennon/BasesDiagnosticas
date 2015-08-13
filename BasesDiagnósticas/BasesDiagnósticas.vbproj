@@ -91,6 +91,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasesDiagnósticas\Fármaco.vb" />
     <Compile Include="BasesDiagnósticas\Laboratorio.vb" />
     <Compile Include="BasesDiagnósticas\Manifestación.vb" />
     <Compile Include="BasesDiagnósticas\Diagnóstico.vb" />
@@ -100,11 +101,16 @@
     <Compile Include="Medicina\Cardiología\Insuficiencia_Cardíaca.vb" />
     <Compile Include="Medicina\Cirugía General\Obstrucción_Pilórica.vb" />
     <Compile Include="Medicina\Endocrinología\Diabetes.vb" />
+    <Compile Include="Medicina\Endocrinología\Endocrinopatía.vb" />
+    <Compile Include="Medicina\Endocrinología\Insuficiencia_Hipofisiaria.vb" />
     <Compile Include="Medicina\Endocrinología\Tiroidismos.vb" />
+    <Compile Include="Medicina\Fármacos\Fármacos.vb" />
     <Compile Include="Medicina\Gastroenterología\Enteropatía.vb" />
     <Compile Include="Medicina\Gastroenterología\Gastroenterología.vb" />
     <Compile Include="Medicina\Gastroenterología\Hepatopatía.vb" />
     <Compile Include="Medicina\Gastroenterología\Gastropatías.vb" />
+    <Compile Include="Medicina\Medicina General\Complicaciones_Diabetes.vb" />
+    <Compile Include="Medicina\Medicina General\Toxicomanías.vb" />
     <Compile Include="Medicina\Oncología\Cáncer_de_estómago.vb" />
     <Compile Include="Medicina\Oncología\Pancreas.vb" />
     <Compile Include="Medicina\Infectología\Infección.vb" />

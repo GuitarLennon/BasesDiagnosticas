@@ -6,20 +6,22 @@ Imports Diagnósticos.Medicina.Síntomas
 
 Namespace Medicina.MedicinaGeneral
 
-    Class Síndrome_Urémico
+    Public Class Complicaciones_propias_de_la_diabetes
         Inherits Diagnóstico
 
         Public Overrides Property Cie10 As String
 
         Public Overrides Property Description As String
 
-        Public Overrides Property Sinónimos As String() = {"Uremia"}
+    End Class
 
-        Sub New()
-            Me.ManifestacionesObligatorias = {
-                New Apetito
-            }
-        End Sub
+
+    Public Class Cetoacidosis_diabética
+        Inherits Complicaciones_propias_de_la_diabetes
+
+        Public Overrides Property Cie10 As String
+
+        Public Overrides Property Description As String
 
     End Class
 

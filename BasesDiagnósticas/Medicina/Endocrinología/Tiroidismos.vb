@@ -7,7 +7,7 @@ Imports Diagnósticos.Medicina.Síntomas
 Namespace Medicina.Endocrinología
 
     Public Class Hipotiroidismo
-        Inherits Diagnóstico
+        Inherits Endocrinopatía
 
         Public Overrides Property Cie10 As String
 
@@ -16,7 +16,7 @@ Namespace Medicina.Endocrinología
     End Class
 
     Public Class Hipertiroidismo
-        Inherits Diagnóstico
+        Inherits Endocrinopatía
 
         Public Overrides Property Cie10 As String
 
