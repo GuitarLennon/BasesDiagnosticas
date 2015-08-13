@@ -1,7 +1,6 @@
 ﻿Option Strict On
 Option Explicit On
 
-Imports Diagnósticos.BasesDiagnósticas
 Imports Diagnósticos.Medicina.Síntomas
 
 Namespace Medicina.Endocrinología
@@ -21,6 +20,9 @@ Namespace Medicina.Endocrinología
         Public Overrides Property Cie10 As String
 
         Public Overrides Property Description As String
+
+        Public Overrides Property Sinónimos As String() =
+            {"Insuficiencia Tiroidea"}
 
         Sub New()
             MyBase.ManifestacionesObligatorias = {

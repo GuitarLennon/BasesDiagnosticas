@@ -16,7 +16,8 @@ Namespace Medicina.Oncología
 
         Sub New()
             MyBase.ManifestacionesObligatorias = {
-                New Adelgazamiento
+                New Adelgazamiento,
+                New Apetito
             }
         End Sub
 

@@ -103,6 +103,7 @@
     <Compile Include="Medicina\Endocrinología\Diabetes.vb" />
     <Compile Include="Medicina\Endocrinología\Endocrinopatía.vb" />
     <Compile Include="Medicina\Endocrinología\Insuficiencia_Hipofisiaria.vb" />
+    <Compile Include="Medicina\Endocrinología\Insuficiencia_Suprarrenal.vb" />
     <Compile Include="Medicina\Endocrinología\Tiroidismos.vb" />
     <Compile Include="Medicina\Fármacos\Fármacos.vb" />
     <Compile Include="Medicina\Gastroenterología\Enteropatía.vb" />
@@ -125,6 +126,7 @@
     <Compile Include="Medicina\Neumología\Neumología.vb" />
     <Compile Include="Medicina\Oncología\Oncología.vb" />
     <Compile Include="Medicina\Psiquiatría\Psiquiatría.vb" />
+    <Compile Include="Medicina\Psiquiatría\Trastorno_psiquiátrico.vb" />
     <Compile Include="Medicina\Signos y síntomas\Apetito.vb" />
     <Compile Include="Medicina\Signos y síntomas\CambiosDePeso.vb" />
     <Compile Include="Medicina\Signos y síntomas\Dolor.vb" />

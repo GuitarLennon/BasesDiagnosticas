@@ -13,6 +13,12 @@ Namespace Medicina.Endocrinología
 
         Public Overrides Property Description As String
 
+        Sub New()
+            Me.ManifestacionesObligatorias = {
+                New Apetito
+            }
+        End Sub
+
     End Class
 
 End Namespace
