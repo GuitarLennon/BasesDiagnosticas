@@ -1,6 +1,6 @@
 ﻿Imports Diagnósticos.BasesDiagnósticas
 Imports Diagnósticos.Programación
-'Imports Diagnósticos.
+Imports Diagnósticos.Programación.Autor
 
 Namespace Medicina.Signos
 

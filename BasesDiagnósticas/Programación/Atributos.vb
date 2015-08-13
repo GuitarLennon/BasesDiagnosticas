@@ -5,6 +5,11 @@ Option Compare Text
 
 Namespace Programación
 
+    <Flags>
+    Public Enum Referencias As Integer
+        Jinich = 1
+    End Enum
+
     ''' <summary>
     ''' Almacena la referencia de una clase, propiedad, enumeración... etc.
     ''' </summary>
@@ -13,7 +18,7 @@ Namespace Programación
     Public Class Referencia
         Inherits Attribute
 
-        Public Property Referencia As String
+        Public Property Referencia As Referencias
     End Class
 
     ''' <summary>
@@ -25,7 +30,7 @@ Namespace Programación
         Inherits Attribute
 
         <Flags>
-        Public Enum Autores As Byte
+        Public Enum Autores As Integer
             Arturo = 1
             Roxana = 2
         End Enum

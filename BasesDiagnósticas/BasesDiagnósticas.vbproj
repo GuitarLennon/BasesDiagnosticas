@@ -102,7 +102,11 @@
     <Compile Include="Medicina\Endocrinología\Diabetes.vb" />
     <Compile Include="Medicina\Endocrinología\Tiroidismos.vb" />
     <Compile Include="Medicina\Gastroenterología\Enteropatía.vb" />
+    <Compile Include="Medicina\Gastroenterología\Gastroenterología.vb" />
     <Compile Include="Medicina\Gastroenterología\Hepatopatía.vb" />
+    <Compile Include="Medicina\Gastroenterología\Gastropatías.vb" />
+    <Compile Include="Medicina\Oncología\Cáncer_de_estómago.vb" />
+    <Compile Include="Medicina\Oncología\Pancreas.vb" />
     <Compile Include="Medicina\Infectología\Infección.vb" />
     <Compile Include="Medicina\Laboratorio\Dislipidemias.vb" />
     <Compile Include="Medicina\Medicina General\MalAbsorción.vb" />
